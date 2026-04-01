@@ -40,7 +40,7 @@ tags:
   - uploadify
 title: Uploadify (Session and authentication) with ASP.NET
 url: /2013/03/23/uploadify-session-and-authentication-with-asp-net/
-
+draft: true
 ---
 ### Challenge:
 

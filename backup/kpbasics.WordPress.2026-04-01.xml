@@ -25059,7 +25059,7 @@ Hooh..too much theory. Let’s start how we can deliver multimedia on our page.
 There are two ways of doing this:
 <strong>1. Embedded Playback : </strong>you can embed Windows Media Player on your page directly. But client should have installed Windows Media Player on his/her computer to view your multimedia files.
 The code looks like as below:
-[sourcecode language="html"]
+```html
 &lt;div class=&quot;csharpcode&quot;&gt;&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
 &lt;head id=&quot;Head1&quot; runat=&quot;server&quot;&gt;
  &lt;title&gt;MultiMedia Page&lt;/title&gt;
@@ -25115,15 +25115,15 @@ The code looks like as below:
  &lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;&lt;/div&gt;
-&lt;div class=&quot;csharpcode&quot;&gt;[/sourcecode]
+&lt;div class=&quot;csharpcode&quot;&gt;```
 Output of the above piece of code is as below:<a href="http://kiranpatils.files.wordpress.com/2009/11/image3.png"> It will be real fun when you try on your own :)</a>
 <a href="http://kiranpatils.files.wordpress.com/2009/11/image3.png"><img style="display:inline;border-width:0;" title="Media Player In Browser" src="http://kiranpatils.files.wordpress.com/2009/11/image_thumb3.png" border="0" alt="Media Player In Browser" width="333" height="286" /></a>
 In above code the main things is :
 <div class="csharpcode">
-<pre class="alt"><span class="lnum">[sourcecode language="html"]
+<pre class="alt"><span class="lnum">```html
  &lt;/span&gt;&lt;object id=&quot;player1&quot; height=&quot;400&quot; width=&quot;590&quot; classid=&quot;CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6&quot;&gt;
  &lt;/object&gt;
-&lt;pre&gt; [/sourcecode]
+&lt;pre&gt; ```
  </span></pre>
 </div>
 2. Playing file with an External Player is easy. Just following piece of code does that for you:
@@ -30964,7 +30964,7 @@ So, you may say that why don’t you do the server side task in chunks[Means cop
 After goggling a lot and finding a lot of options[UpdateProgess and some JS stuff which sounds bit complex and dirty solution to me] finally i got link of <a href="http://msdn.microsoft.com/en-us/library/ms978607.aspx#diforwc-ap02_plag_howtomultithread"><strong><em>MSDN Site</em></strong></a> which i found the best option Clean,Clear and Not Complex. I’ve derived my solution from MS Solution only.
 Follow the steps given as below:
 1. Create one class file in your Solution with name as <strong>ThreadResult.cs</strong> and the copy-paste following code in it.
-[sourcecode language="csharp"]
+```csharp
 /// &lt;summary&gt;
 /// This class will be used to
 /// store  ThreadResult in a
@@ -30992,7 +30992,7 @@ public static bool Contains(string key)
  return  ThreadsList.ContainsKey(key);
  }
 }
-[/sourcecode]
+```
 2. On your LongRuning Task page – Where you have kept the button and on click of it you perform long running task. Go to it’s server side click event handler and amend the code as shown below:
 <strong>Markup file's Code – LongRuningTask.aspx</strong>
 [sourcecode language="xml"]
@@ -31018,9 +31018,9 @@ public static bool Contains(string key)
  &lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-[/sourcecode]
+```
 <strong>Code-behind file’s code -- LongRuningTask.aspx.cs</strong>
-[sourcecode language="csharp"]
+```csharp
 using System;
 using System.Threading;
 using System.Web.UI;
@@ -31051,7 +31051,7 @@ private void LongRuningTask(object data)
  ThreadResult.Add(requestId.ToString(), &quot;Item Processed Successfully.&quot;); // you  can add your result in second parameter.
  }
 }
-[/sourcecode]
+```
 In Above code on click of Button we’ve create one new Thread and started the thread – means long runing method will be called and start processing on different thread without blocking current executing thread – your main web form page. and opened a new popup window which opens <strong>ResultPage.aspx</strong> with RequestId as a Query String[We will see it in Step 3] to check the progress and result of a process.
 LongRuningTask Method will be called by Thread and it does main processing logic and on finish of the operation it adds the Result in ThreadResult – mapping table which we have created in step 1 for Mapping. Where RequestId is Key and Process result is value of HashTable. It’s main use will see shortly in step 3.
 3. So far so good :) Now we need one .aspx page which shows progress to end user and keep checking that is thread executed successfully or not. For that Create one .aspx page with the name “<strong>ResultPage.aspx</strong>”. for simplicity I've followed single file model for ResultPage.aspx and i would suggest the same to you.
@@ -31117,7 +31117,7 @@ font-weight:bold;
 &lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-&lt;pre&gt;[/sourcecode]
+&lt;pre&gt;```
 4. You are done with coding stuff. Let’s keep fingers crossed and F5 the code.
 <strong></strong><a href="http://kiranpatils.files.wordpress.com/2010/01/image.png"><img class="alignnone" style="border:0 none;display:inline;" title="Long Runing Task" src="http://kiranpatils.files.wordpress.com/2010/01/image_thumb.png" border="0" alt="Long Runing Task" width="350" height="309" /></a>
 <strong></strong><a href="http://kiranpatils.files.wordpress.com/2010/01/image1.png"><img style="display:inline;border-width:0;" title="Long Runing Task" src="http://kiranpatils.files.wordpress.com/2010/01/image_thumb1.png" border="0" alt="Long Runing Task" width="360" height="309" /></a>
@@ -31264,12 +31264,12 @@ I was writing a piece of code which generates zip file from the files read from 
 <span style="color:#ff0000;">UnSupported Compression method for FILENAME.FILEXTENSION ERROR</span>
 <h3><span style="color:#ff0000;"><span style="color:#000000;">Solution:</span></span></h3>
 <span style="color:#ff0000;"><span style="color:#000000;">Then i just started going through the code and i just commented following line of cod and it worked!</span></span>
-[sourcecode language="csharp"]
+```csharp
 //Crc32 crc = new Crc32();
 //crc.Reset();
 //crc.Update(buffer);
 //zipEntry.Crc = crc.Value;
-[/sourcecode]
+```
 Hope this helps you to resolve your problem and say happy zipping!]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>479</wp:post_id>
@@ -31340,7 +31340,7 @@ Hope this helps you to resolve your problem and say happy zipping!]]></content:e
 		<description></description>
 		<content:encoded><![CDATA[I have generated Zip File using SharpZipLib. But when i try to access it using Windows XP extraction tool it shos following error:  <span style="color:#ff0000;">Compressed (zipped) Folder is invalid or corrupted <span style="color:#000000;">and it worked fine with 7zip. So, i did googling and found one nice solution from this link : </span></span><a href="http://blog.tylerholmes.com/2008/12/windows-xp-unzip-errors-with.html">http://blog.tylerholmes.com/2008/12/windows-xp-unzip-errors-with.html</a>
 Solution is -- extracted from the above blog only.
-[sourcecode language="csharp"]
+```csharp
 ...
 ZipEntry entry = new ZipEntry(Path.GetFileName(sourceFilePath));
 entry.DateTime = DateTime.Now;
@@ -31350,7 +31350,7 @@ entry.DateTime = DateTime.Now;
 entry.Size = new FileInfo(sourceFilePath).Length;
 zipStream.PutNextEntry(entry);
 ...
-[/sourcecode]
+```
 If it works say thanks to <strong>Tyler Holmes -- </strong>Above Blog author, for such a nice article!
 Happy zipping!<strong>
 </strong>]]></content:encoded>
@@ -31548,7 +31548,7 @@ Hope this will help.]]></wp:comment_content>
 		<content:encoded><![CDATA[If you are genearting zip file runtime in memory and sending mail at run time. and you faced the error as shown below:
 <span style="color:#ff0000;">Exceeded storage allocation. The server response was: 5.7.0 Our system detected an illegal attachment on your message.</span>
 <span style="color:#ff0000;"><span style="color:#000000;">Then to fix it, you have to do the following change in your code(Pls note I've used SharpZipLib and Memory Stream for sending an email at run time using gmail server):</span></span>
-[sourcecode language="csharp"]
+```csharp
 MemoryStream zipFileStream = new MemoryStream();
 zipOutputStream = new ZipOutputStream(zipFileStream);
 ..
@@ -31560,7 +31560,7 @@ zipOutputStream = new ZipOutputStream(zipFileStream);
 // Seek to begining -- IF YOU DON' ADD BELOW LINE IT Will give above error
 zipFileStream.Seek(0, SeekOrigin.Begin);
 mailMessage.Attachments.Add(new Attachment(zipFileStream, &quot;myzipfile.zip&quot;));
-[/sourcecode]
+```
 if you've seen the above code. Below line says MemroyStream to seek to Begining of the stream, So when SMTP Server scans the file before sending it gets perfect file.
 <strong>zipFileStream.Seek(0, SeekOrigin.Begin);</strong>
 Happy Mailing!
@@ -31714,12 +31714,12 @@ it mean your file extension not support.............]]></wp:comment_content>
 		<description></description>
 		<content:encoded><![CDATA[<h3>Challenge:</h3>
 We're trying to open Modal Window from Modal Window on button click which is inside update panel:
-[sourcecode language="csharp"]
+```csharp
 protected void Button1_Click(object sender, EventArgs e)
 {
 ScriptManager.RegisterStartupScript(Button1, page.GetType(), &quot;OpenModalDialog&quot;, &quot;&lt;script type=text/javascript&gt;window.showModalDialog('http://www.gooogle.com, null, 'dialogHeight:100px;dialogWidth:280px;status:no'); &lt;/script&gt;&quot;, false);
 }
-[/sourcecode]
+```
 But it was giving an error <span style="color:#ff0000;">Object dosen't support this property or method</span>
 <h3>Solution:</h3>
 Pls  check that pop-up blocker is not active. <strong>[Tools | Pop-Up Blocker|Turn-off Pop-up Blocker]</strong>.]]></content:encoded>
@@ -31838,7 +31838,7 @@ After googling a bit i found nice tool called "wallmaster" which is free and sou
 		<description></description>
 		<content:encoded><![CDATA[Hi Guys before couple of days only i came to know that  <strong>the Sort methods used by the .NET collections are unstable.</strong> These sort methods, which include <a href="http://msdn2.microsoft.com/en-us/library/system.array.sort.aspx">System.Array.Sort</a> and <a href="http://msdn2.microsoft.com/en-us/library/3da4abas.aspx">System.Collections.Generic.List&lt;T&gt;.Sort</a>, use the Quick Sort algorithm, which is relatively fast but in this case, unstable. However, there may be instances where you require a stable sort, so a custom solution is required. Let me explain you by an example:
 <strong><span style="text-decoration:underline;">Program.CS</span></strong>
-[sourcecode language="csharp"]
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31935,7 +31935,7 @@ return num;
 #endregion
 }
 }
-[/sourcecode]
+```
 <strong></strong>
 <strong>Output</strong>
 <strong> </strong>
@@ -32131,7 +32131,7 @@ Happy Debugging!
 		<guid isPermaLink="false">http://kiranpatils.wordpress.com/?p=500</guid>
 		<description></description>
 		<content:encoded><![CDATA[Here are the few functions which will help you out in getting <strong>CPU Usage</strong>, <strong>Memory Usage</strong> and <strong>Physical Memory</strong> Using C#.NET[Proprietor: <strong>Yogesh Patel</strong>]:
-[sourcecode language="csharp"]
+```csharp
 /// &lt;summary&gt;
  /// Gets CPU Usage in %
  /// &lt;/summary&gt;
@@ -32169,7 +32169,7 @@ Happy Debugging!
  }
  return memory;
  }
-[/sourcecode]
+```
 <strong>Please note that on INTERNET there are so many functions available but this is most accurate and perfect. We are using it on our production servers.</strong>]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>500</wp:post_id>
@@ -32205,7 +32205,7 @@ Happy Debugging!
 		<guid isPermaLink="false">http://kiranpatils.wordpress.com/?p=505</guid>
 		<description></description>
 		<content:encoded><![CDATA[<a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.stopwatch.aspx" target="_blank" rel="noopener noreferrer">Stopwatch</a> is a good guy provided by MS to accurately measure elapsed time.
-[sourcecode language="csharp"]
+```csharp
 System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
 stopWatch.Start();
 // Your Time Consuming Code goes here..
@@ -32216,7 +32216,7 @@ TimeSpan ts = stopWatch.Elapsed;
 string elapsedTime = String.Format(&quot;{0:00}:{1:00}:{2:00}.{3:00}&quot;,
 ts.Hours, ts.Minutes, ts.Seconds,
 ts.Milliseconds / 10);
-[/sourcecode]
+```
 Happy Coding! :)]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>505</wp:post_id>
@@ -32358,13 +32358,13 @@ Now, let's see solution of it. There are many ways to solve it:
 1.  Using Server-Side Code:
 You can set this header if 		  you use the <strong>Response.AddHeader</strong> method in an ASP page. In ASP.NET, you can use the <strong>Response.AppendHeader</strong> method
 <strong>Source </strong>: <a href="http://petesbloggerama.blogspot.com/2007/08/aspnet-loss-of-session-cookies-with.html">http://petesbloggerama.blogspot.com/2007/08/aspnet-loss-of-session-cookies-with.html</a>
-[sourcecode language="csharp"]
+```csharp
 An easy fix is to add the header in Global.asax:
 protected void Application_BeginRequest(object sender, EventArgs e)
 {
 HttpContext.Current.Response.AddHeader(&quot;p3p&quot;, &quot;CP=\&quot;CAO PSA OUR\&quot;&quot;);
 }
-[/sourcecode]
+```
 2. You can use the IIS Management Snap-In (inetmgr) to add to a static file:
 Follow these steps to add this header to a static 		  file:
 <ol>
@@ -33230,7 +33230,7 @@ Cheers ;)]]></wp:comment_content>
 		<content:encoded><![CDATA[Generic <a href="http://msdn.microsoft.com/en-us/library/w56d4y5z.aspx" target="_blank" rel="noopener noreferrer">List</a> has powerful sorting method which too less .Netters are aware of. Today, I would like to show it’s power to you guys!
 Here we go..
 Suppose, you have a Class called Employee and created collection of employees using Generic List as shown below:
-[sourcecode language="csharp"]
+```csharp
  public class Employee
  {
  public int EmployeeID { get; set; }
@@ -33248,9 +33248,9 @@ Suppose, you have a Class called Employee and created collection of employees us
 List&lt;Employee&gt; employeeList = new List&lt;Employee&gt;();
 employeeList.Add(new Employee(2, &quot;Sachin T&quot;));
 employeeList.Add(new Employee(1, &quot;Anil K&quot;));
-[/sourcecode]
+```
 Now, if you need to sort your employees collection by <strong>EmployeeID </strong>how will you do it? – I know i know you will write your logic and do so many things..But hold on how it will be if we can do it in just one line? sounds cool na? Here you go:
-[sourcecode language="csharp"]
+```csharp
 Console.WriteLine(&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;Before Sorting&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;);
  foreach (Employee employee in employeeList)
  {
@@ -33273,7 +33273,7 @@ Console.WriteLine(&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;Before Sorting&l
  2 :- Sachin T
  Press any key to continue . . .
  */
-[/sourcecode]</pre>
+```</pre>
 <h3>Links</h3>
 <a href="http://weblogs.asp.net/dwahlin/archive/2007/04/23/The-Power-of-Anonymous-Methods-in-C_2300_.aspx">http://weblogs.asp.net/dwahlin/archive/2007/04/23/The-Power-of-Anonymous-Methods-in-C_2300_.aspx</a>]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
@@ -33571,7 +33571,7 @@ Before so many months back i have been assigned for a task where we need to set 
  &lt;forms timeout=&quot;50000000&quot;/&gt;
  &lt;/authentication&gt;
 &lt;/system.web&gt;
-[/sourcecode]
+```
 <strong>Session</strong><strong> Timeout Configuration</strong>
 [sourcecode language="xml"]
 &lt;pre&gt;&lt;configuration&gt;
@@ -33582,7 +33582,7 @@ Before so many months back i have been assigned for a task where we need to set 
       &lt;/sessionState&gt;
    &lt;/system.web&gt;
 &lt;/configuration&gt;&lt;/pre&gt;
-[/sourcecode]
+```
 <h3>Solution</h3>
 Unfortunately at tha time i haven't written blog on it[I'm sorry for that]. But Here is the link where someone else did that already[Thanks to him!]:
 <a href="http://dotnethitman.spaces.live.com/Blog/cns!E149A8B1E1C25B14!210.entry">http://dotnethitman.spaces.live.com/Blog/cns!E149A8B1E1C25B14!210.entry</a>
@@ -33777,7 +33777,7 @@ Just by following 3 Steps your assembly is in to GAC..is it good na???
 But there is one problem in it..can you guess what???No na..ok let me tell you.
 See if Assembly dosen't contains Strong Name than it will not show any error and not add it in to GAC Also..end user will not come in to know about it any time...so now what to do??? I have developed one Helper Class which  will check that Assembly has strong name or not, user has permission to Add Assembly in to GAC etc.
 So here is my Helper Class:
-[sourcecode language="csharp"]
+```csharp
 &lt;em&gt;&lt;strong&gt;public class Helper
 {
 public enum ErrorMessage
@@ -33828,9 +33828,9 @@ return ErrorMessage.NotAuthorized;
 }
 } &lt;/strong&gt;&lt;/em&gt;
 &lt;span style=&quot;color: #ff00ff;&quot;&gt; }&lt;/span&gt;
-[/sourcecode]
+```
 To use it:
-[sourcecode language="csharp"]
+```csharp
 &lt;em&gt;&lt;strong&gt; private bool InstallAssembly()
 {
 String AssemblyPath = assemblyofd.FileName;&lt;/strong&gt;&lt;/em&gt;
@@ -33873,7 +33873,7 @@ break;
 }
 return installed;
 }&lt;/strong&gt;&lt;/em&gt;
-[/sourcecode]
+```
 That's it.
 This will serve the Purpose.
 Try it and let me  know it works for you or not.
@@ -33913,7 +33913,7 @@ Try it and let me  know it works for you or not.
 		<content:encoded><![CDATA[<h3><strong>Challenge:</strong></h3>
 Since so long back one of my best buddy <strong>Devang </strong>asked me that how can we merge two Datasets in one. In short, suppose you've two XML Files and you want to read them in different dataset. So, obviously they both will belong to two different data sets. But you would like to have both of them in a single dataset. How can you do it?
 Before you see the solution code. Let's see the problem by code
-[sourcecode language="csharp"]
+```csharp
 private const string FILE1_PATH = &quot;~/Books1.xml&quot;;
 private const string FILE2_PATH = &quot;~/Books2.xml&quot;;
 protected void Page_Load(object sender, EventArgs e)
@@ -33932,13 +33932,13 @@ dataSet2.Tables[0].ReadXml(Server.MapPath((FILE2_PATH)));
 // Merge DataSet2.Table in first dataset -- WILL NOT WORK -- DataTable already belongs to another DataSet.
 dataSet1.Tables.Add(dataSet2.Tables[0]);
 }
-[/sourcecode]
+```
 <h3>Solution</h3>
 When we try to use following line.
-[sourcecode language="csharp"]
+```csharp
 // Merge DataSet2.Table in first dataset -- WILL NOT WORK -- DataTable already belongs to another DataSet.
 dataSet1.Tables.Add(dataSet2.Tables[0]);
-[/sourcecode]
+```
 It will throw following error:
 <span style="color:#ff0000;">DataTable already belongs to another DataSet.</span>
 <span style="color:#ff0000;">System.ArgumentException was unhandled by user code</span>
@@ -33956,13 +33956,13 @@ It will throw following error:
 <span style="color:#ff0000;"> InnerException:</span>
 <span style="color:#ff0000;"><span style="color:#000000;">Reason fort an error is dataset2's Table number 0 </span></span>can't be added to dataset1's tables collection as it is already in dataset2's tables collection -- Recall Reference types?
 So, final solution is as below:
-[sourcecode language="csharp"]&lt;/pre&gt;
+```csharp&lt;/pre&gt;
 // Remove table from second dataset
 DataTable dt = dataSet2.Tables[0];
 dataSet2.Tables.Remove(dt);
 // and add it to first one
 dataSet1.Tables.Add(dt);
-[/sourcecode]
+```
 Happy Dataset Merging! :-)]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>558</wp:post_id>
@@ -34040,7 +34040,7 @@ I tried to Google it and found below stuff which <strong>doesn't work as</strong
 <h3><code><span style="color:#ff0000;">webCtrl.Document.Window.ScrollTo(0, int.MaxValue);</span></code></h3>
 <code><span style="color:#ff0000;"><span style="color:#000000;">// </span></span></code><span style="color:#000000;">http://stackoverflow.com/questions/46454/webbrowsercontrol-scroll-to-bottom</span>
 <strong>Finally, I did it using following way:</strong>
-[sourcecode language="csharp"]
+```csharp
 private void ScrollMessageIntoView()
  {
  // MOST IMP : processes all windows messages queue
@@ -34051,7 +34051,7 @@ webBrowserControlRcdMsg.Document.Window.ScrollTo(0,
 webBrowserControlRcdMsg.Document.Body.ScrollRectangle.Height);
  }
  }
-[/sourcecode]
+```
 Thanks to this Link : <a href="http://social.msdn.microsoft.com/forums/en-US/winforms/thread/74694382-dc0d-4824-ac8f-3a4046f45111/" target="_blank" rel="noopener noreferrer">http://social.msdn.microsoft.com/forums/en-US/winforms/thread/74694382-dc0d-4824-ac8f-3a4046f45111/</a></pre>]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>565</wp:post_id>
@@ -34984,7 +34984,7 @@ private void DownloadZip(byte[ bufferzip)
  HttpContext.Current.Response.End();
  }
 }
-[/sourcecode]
+```
 Now, it's time to see a working code!
 [sourcecode languag="csharp"]
 private void DownloadZip(byte[ bufferzip)
@@ -35002,7 +35002,7 @@ private void DownloadZip(byte[ bufferzip)
  HttpContext.Current.Response.End();
 }
 }
-[/sourcecode]
+```
 Now, if you compare the working and non working code you will see the difference. <span style="color:#ff0000;">HttpContext.Current.Response.ContentType = "application/zip";</span> was causing an issue and changing it to <span style="color:#0000ff;">HttpContext.Current.Response.ContentType = "application/octet-stream";</span> solved it!
 <h4>Reference links:</h4>
 <a href="http://community.sharpdevelop.net/forums/p/10467/28859.aspx#28859">http://community.sharpdevelop.net/forums/p/10467/28859.aspx#28859</a>
@@ -35224,7 +35224,7 @@ They are a great source of knowledge as well as inspiration to me and I surely k
 		<description></description>
 		<content:encoded><![CDATA[<h3>Challenge:</h3>
 I was playing with nice and very useful class <a href="http://msdn.microsoft.com/en-us/library/system.timezoneinfo.aspx" target="_blank" rel="noopener noreferrer">TimeZoneInfo </a>in .NET Framework 3.5. Using which we can convert DateTime from SourceTimeZone to DestinationTimeZone by just one line.
-[sourcecode language="csharp"]
+```csharp
 &lt;pre&gt;DateTime hwTime = new DateTime(2007, 02, 01, 08, 00, 00);
 try
 {
@@ -35243,7 +35243,7 @@ catch (InvalidTimeZoneException)
    Console.WriteLine(&quot;Registry data on the Hawaiian STandard Time zone has been corrupted.&quot;);
 }
 &lt;/pre&gt;
-[/sourcecode]
+```
 I was playing more with it and suddenly following error popped up when I selected My Source TimeoZone to <strong>"(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi"</strong> and Destination TimeZone to <strong>"(UTC) Dublin, Edinburgh, Lisbon, London"</strong>
 <span style="color:#ff0000;">System.ArgumentException was unhandled</span>
 <span style="color:#ff0000;"> Message=<strong>"The conversion could not be completed because the supplied DateTime did not have the Kind property set correctly.  For example, when the Kind property is DateTimeKind.Local, the source time zone must be TimeZoneInfo.Local.\r\nParameter name: sourceTimeZone"</strong></span>
@@ -38094,7 +38094,7 @@ Following steps will help you to create your first WCF service (In this example 
 <blockquote><strong>NOTE : We need to add reference to System.ServiceModel</strong></blockquote>
 The service contract that is used here employees a request-reply message exchange pattern by default that is not explicitly specified. You can specify this and other message exchange patterns for client-service communications by setting properties of the OperationContractAttribute and ServiceContractAttribute in the contract.
 Example:
-[sourcecode language="csharp"]
+```csharp
 namespace WCFService
 {
 [ServiceContract]
@@ -38105,10 +38105,10 @@ public interface ICalculator
 double Add(double number1, double number2);
 }
 }
-[/sourcecode]
+```
 <strong>Step 2 : Implement a Windows Communication Foundation Service Contract</strong> : Implement the Service Contract defined in step1.
 Example:
-[sourcecode language="csharp"]
+```csharp
 namespace WCFService
 {
 public class CalculatorService : ICalculator
@@ -38129,7 +38129,7 @@ return result;
 #endregion
 }
 }
-[/sourcecode]
+```
 <strong>Step 3 : Run a Basic Windows Communication Foundation Service</strong> :
 This topic describes how to run a basic Windows Communication Foundation (WCF) service. This procedure consists of the following steps:
 <ul>
@@ -38139,7 +38139,7 @@ This topic describes how to run a basic Windows Communication Foundation (WCF) s
 	<li> Open the service host.</li>
 </ul>
 Example:
-[sourcecode language="csharp"]
+```csharp
 namespace WCFService
 {
 class Program
@@ -38184,7 +38184,7 @@ serviceHost.Abort();
 }
 }
 }
-[/sourcecode]
+```
 <strong>Step 4: Create a Windows Communication Foundation Client</strong> : This topic describes how to retrieve metadata from a WCF service and use it to create a proxy that can access the service. This task is most easily completed by using the ServiceModel Metadata Utility Tool (<strong>Svcutil.exe</strong>) provided by WCF. This tool obtains the metadata from the service and generates a managed source code file for a client proxy in the language you have chosen. In addition to creating the client proxy, the tool also creates the configuration file for the client that enables the client application to connect to the service at one of its endpoints.
 <blockquote>svcutil.exe /language:cs /out:generatedProxy.cs /config:app.config</blockquote>
 By default, the client proxy code is generated in a file named after the service (in this case, for example, CalculatorService.cs or CalculatorService.vb where the extension is appropriate to the programming language: .vb for Visual Basic or .cs for C#). The /out switch used changes the name of the client proxy file to "generatedProxy.cs". The /config switch used changes the name of the client configuration file from the default "output.config" to "app.config".
@@ -38197,7 +38197,7 @@ svcutil.exe will provide you the default configuration automatically.
 <strong>Step 6 : Use a Windows Communication Foundation Client</strong> : Once a Windows Communication Foundation (WCF) proxy has been created and configured, a client instance can be created and the client application can be compiled and used to communicate with the WCF service. This topic describes procedures for creating and using a WCF client. This procedure does three things: creates a WCF client, calls the service operations from the generated proxy, and closes the client once the operation call is completed.
 Now, copy paste the svcutil generated files (CS and Config file) within your console project and then you can call your service from your client application as shown below:
 Example:
-[sourcecode language="csharp"]
+```csharp
 namespace WCFClient
 {
 class Program
@@ -38213,7 +38213,7 @@ Console.WriteLine(&quot;closed!&quot;);
 }
 }
 }
-[/sourcecode]
+```
 And then first start your service (your service must be in running state before you run the client) and then run the client. And this is how it will look like:
 <a href="http://kiranpatils.files.wordpress.com/2011/10/wcfserviceclient1.png"><img class="alignnone size-full wp-image-737" title="WCFServiceClient" src="http://kiranpatils.files.wordpress.com/2011/10/wcfserviceclient1.png" alt="" width="1024" height="547" /></a>
 <h4>Resources</h4>
@@ -38444,7 +38444,7 @@ Named parameter options:
 </tbody>
 </table>
 <em>Just a note : Please note that there are other named parameters as well. But it has been omitted intentionally to make things simple.</em>
-[sourcecode language="csharp"]
+```csharp
 [ServiceContract(Name=&quot;CalculatorService&quot;,
 Namespace=&quot;http://schemas.demo.com/2011/10/calc/&quot;)]
 public interface ICalculator
@@ -38452,7 +38452,7 @@ public interface ICalculator
 [OperationContract]
 double Add(double number1, double number2);
 }
-[/sourcecode]
+```
 TIP:
 <ol>
 	<li>Always use Namespace property to provide a URI that in some way uniquely identifies both your organization and the conceptual or business domain in which the service operates. W3C standard – year and month to differentiate versions of your service.</li>
@@ -38484,7 +38484,7 @@ Named parameter options:
 </tbody>
 </table>
 <em>Just a note : Please note that there are other named parameters as well. But it has been omitted intentionally to make things simple.</em>
-[sourcecode language="csharp"]
+```csharp
 [ServiceContract(Name=&quot;CalculatorService&quot;,
 Namespace=&quot;http://schemas.demo.com/2011/10/calc/&quot;)]
 public interface ICalculator
@@ -38493,7 +38493,7 @@ public interface ICalculator
 IsOneWay=true)]]
 double Add(double number1, double number2);
 }
-[/sourcecode]
+```
 <strong>Fault Contracts</strong>
 <ul>
 	<li>When something goes wrong – what to do? (When service issues some faults then what type of information should be issued)</li>
@@ -38502,7 +38502,7 @@ Fault, refer to the SOAP fault mechanism for transferring error or fault conditi
 	<li><strong>WCF FaultException Class</strong> :- Provides standard mechanism for translating between two world of .NET Exceptions and SOAP Faults – WCF serialized your exception in SOAP Fault.</li>
 	<li><strong>FaultContractAttribute</strong> :- enables a service developer to declare which faults a given service might issue if things go wrong. It can be applied to operations only and also more than once if needed.</li>
 </ul>
-[sourcecode language="csharp"]
+```csharp
 // Service Contract
 [OperationContract]
 [FaultContract(typeof(string))]
@@ -38517,7 +38517,7 @@ throw new FaultException(faultDetail);
 }
 return numerator / denominator;
 }
-[/sourcecode]
+```
 <strong>Message Exchange Patterns (MEP)</strong>
 MEPs describe the protocol of message exchanges a consumer must engage in to converse properly with the service. For instance, if a consumer sends a message, it needs to know whether it should expect a message back or whether simply sending the request is enough. Further, can the consumer expect unsolicited messages back from the service? WCF supports
 the following three MEPs:
@@ -38530,7 +38530,7 @@ the following three MEPs:
 In One-Way operation mode, client will send a request to the server and does not care whether it is success or failure of service execution. There is no return from the server-side, it is one-way communication.
 Client will be blocked only for a moment till it dispatches its call to service. If any exception thrown by service will not reach the server.
 Client can continue to execute its statement, after making one-way call to server. There is no need to wait, till server execute. Sometime when one-way calls reach the service, they may not be dispatched all at once but may instead be queued up on the service side to be dispatched one at a time, according to the service's configured concurrency mode behavior. If the number of queued messages has exceeded the queue's capacity, the client will be blocked even if it's issued a one-way call. However, once the call is queued, the client will be unblocked and can continue executing, while the service processes the operation in the background.
-[sourcecode language="csharp"]
+```csharp
 [ServiceContract(Name = &quot;PizzaService&quot;,
 Namespace = &quot;http://schemas.demo.com/2011/10/pizza/&quot;)]
 public interface IPizzaService
@@ -38538,7 +38538,7 @@ public interface IPizzaService
 [OperationContract(IsOneWay = true)]
 void CancelPizza(int pizzaOrderNumber);
 }
-[/sourcecode]
+```
 2. Request / Response [<strong>Default Message exchange pattern</strong>]
 <a href="http://kiranpatils.files.wordpress.com/2011/10/request-reply-operation.jpg"><img class="alignnone size-full wp-image-754" title="Request-Reply-operation" src="http://kiranpatils.files.wordpress.com/2011/10/request-reply-operation.jpg" alt="" width="565" height="173" /></a>
 By default all WCF will be operated in the Request-Response [IsOneWay property of OperationContractAttribute is false) mode. It means that, when client make a request to the WCF service and client will wait to get response from service (till receiveTimeout). After getting the response it will start executing the rest of the statement. If service doesn't respond to the service within receiveTimeout, client will receive TimeOutException
@@ -41641,7 +41641,7 @@ I asked solution of this challenge to our common friend -- Google, and found rea
 Big thanks to all these article writers. Because it only helped us to find a solution. Using this solutions we were able to make session working. But authentication and membership information was not working . But we modified a bit in Global.asax and it started working. So, let me share a final solution with you:
 1.  Pass session related information from your upload page in your upload call:
 <em>Just a note : This javascript code also covers other challenges as well (Which are not in scope of this article. But you may find it helpful!) e.g. passing dynamic data via onUploadStart, sending formdata via settings, showing uploadresult etc. The main variables which does the trick are -- RequireUploadifySessionSync,SecurityToken,SessionId</em>
-[sourcecode language="html"]
+```html
 &lt;script type=&quot;text/javascript&quot;&gt;
 var UploadifyAuthCookie = '&lt;% = Request.Cookies[FormsAuthentication.FormsCookieName] == null ? string.Empty : Request.Cookies[FormsAuthentication.FormsCookieName].Value %&gt;';
 var UploadifySessionId = '&lt;%= Session.SessionID %&gt;';
@@ -41668,9 +41668,9 @@ window.open('&lt;%= ResolveUrl(&quot;FileUploadResultPage.aspx&quot;) %&gt;', 'T
 }
 });
 });
-[/sourcecode]
+```
 2. Now, in Global.asax we have to handle this variables:
-[sourcecode language="csharp"]
+```csharp
 protected void Application_BeginRequest(Object sender, EventArgs e)
 {
         // This check will ensure that we need to sync session only during uploadify upload!
@@ -41722,7 +41722,7 @@ cookie = new HttpCookie(cookie_name);
 cookie.Value = cookie_value;
 HttpContext.Current.Request.Cookies.Set(cookie);
 }
-[/sourcecode]
+```
 Happy Uploading via Uploadify! :-)</pre>]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
 		<wp:post_id>849</wp:post_id>
@@ -43073,7 +43073,7 @@ Would like to share challenges/tasks with you. So, you can also get benefited by
 <ul>
 	<li>Convert Generic List to JSON : Had a generic list, which comes from DB, and needs to pass it on to UI layer, in a JSON format, used System.Web.Script.Serialization.JavaScriptSerializer class for this [using System.Web.Script.Serialization]:</li>
 </ul>
-[sourcecode language="csharp"]
+```csharp
 // ..........
 List&lt;UserUpdate&gt; userUpdates = new List();
 while (sqlDataReader.Read())
@@ -43086,7 +43086,7 @@ userUpdates.Add(userUpdate);
 JavaScriptSerializer javascriptSerializer = new JavaScriptSerializer();
 string JSONString = javascriptSerializer.Serialize(userUpdates);
 return JSONString;
-[/sourcecode]
+```
 Just a note : If you are doing Response.Write then please do change your page's content-type to JSON -- Response.ContentType = "application/json; charset=utf-8";
 <ul>
 	<li>After every 2 second update right side data using AJAX and JSON : There will be a sidebar sitting in right side of a page and after every X seconds, it should get updated with latest updates from application:</li>
@@ -43095,7 +43095,7 @@ To do this, added one UL tag on page, which will hold all data:
 &lt;ul id="user-updates"&gt;
 &lt;/ul&gt;
 Added JavaScript on page, which checks for update every 2 second and prep ends to UL tag:
-[sourcecode language="javascript"]
+```javascript
 &lt;script type=&quot;text/javascript&quot;&gt;
 var url = &quot;UserUpdates.aspx&quot;; //This page returns JSON
 var userID;
@@ -43122,7 +43122,7 @@ $(&quot;&lt;li&gt;&lt;i class='icon-text-width'&gt;&lt;/i&gt;&lt;span&gt;&quot; 
 });
 }, 2000);
 });
-[/sourcecode]
+```
 <ul>
 	<li>JQUERY Prepending an LI to an UL with Animation -- When any new LI gets added to UL, it should come as an Animation - and invested, lot of time to achieve this requirement and finally, following link worked! [Thanks!]</li>
 </ul>
@@ -43826,7 +43826,7 @@ So here are my learnings:
 	<li><strong>RequiredFieldValidation and Validation and State :</strong> Wanted to apply styling as shown here:<strong> </strong><a href="http://getbootstrap.com/css/#forms-control-validation">http://getbootstrap.com/css/#forms-control-validation<strong></strong></a></li>
 </ol>
 Initially tried with RequiredFieldValidator. But due to it's complexity avoided doing so. Then used CustomValidator, Here's how ClientValidationFunction function looks like:
-[sourcecode language="javascript"]
+```javascript
 function ValidateALTText(oSrc, args) {
 var isValid = false;
 // label label-warning
@@ -43839,7 +43839,7 @@ $(&quot;#&quot; + oSrc.id).prev(&quot;.form-control&quot;).parent().addClass(&qu
 }
 args.IsValid = isValid;
 }
-[/sourcecode]
+```
 <ol>
 	<li>Jquery Plugins : Cool, Jquey Plugins which has been designed to use with Bootstrap
 <ol>
@@ -44121,7 +44121,7 @@ And after reading this description, It attracted me! (To you as well?). It's goo
 This was a Eureka moment. Just plugged both of this libraries with <strong>CustomValidator</strong> and you are done! So, here's how CustomValidator clientside and server-side functions looks like:
 Blogs
 SUGIN
-[sourcecode language="html"]
+```html
 &lt;asp:&lt;span class=&quot;hiddenSpellError&quot;&gt;TextBox ID=&quot;txtPhone&quot;  runat=&quot;server&quot; /&gt;
 &lt;asp:&lt;span class=&quot;hiddenSpellError&quot;&gt;RequiredFieldValidator ID=&quot;reqTxtPhone&quot;
 runat=&quot;server&quot; ErrorMessage=&quot;Please enter a phone number&quot; Text=&quot;*&quot; ControlToValidate=&quot;txtPhone&quot;
@@ -44133,9 +44133,9 @@ Text=&quot;*&quot;
 ControlToValidate=&quot;txtPhone&quot;
 ClientValidationFunction=&quot;PhoneNumberValidate&quot;
 /&gt;
-[/sourcecode]
+```
 </span></span></span>
-[sourcecode language="javascript"]
+```javascript
 /*
 This function will be used to validate
 Phone Number client side by CustomValidator
@@ -44146,8 +44146,8 @@ function PhoneNumberValidate(oSrc,args) {
 var isValidNumberOrNot = isValidNumber(txtPhone.value, ddlcountry.value);
 arg.IsValid = isValidNumberOrNot;
 }
-[/sourcecode]
-[sourcecode language="csharp"]
+```
+```csharp
 /// &lt;summary&gt;
 /// This function will be used to validate
 /// Phone Number server side by CustomValidator
@@ -44171,7 +44171,7 @@ args.IsValid = isValidNumber;
 }
 }
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
-[/sourcecode]
+```
 <em>Just a note : LibPhoneNumber accepts country code in <a href="http://en.wikipedia.org/wiki/ISO_3166-1" target="_blank" rel="noopener noreferrer">ISO 3166-1</a> format. But if you've drop down Text and Value both in full form e.g. "India" and you need to pass it as "IN" and If it's not possible to do any change at your DropDown value level then you can use function, Which has been submitted at -- <a href="https://github.com/albeebe/phoneformat.js/issues/9" target="_blank" rel="noopener noreferrer">https://github.com/albeebe/phoneformat.js/issues/9</a> It converts CountryName to CountryCode</em>
 Happy Phone Number Validation! :-)]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
@@ -44306,9 +44306,9 @@ We did a quick search and found following links:
 <a href="http://ajaxcontroltoolkit.codeplex.com/workitem/8103" target="_blank" rel="noopener noreferrer">http://ajaxcontroltoolkit.codeplex.com/workitem/8103</a>
 <a href="http://forums.asp.net/t/1903036.aspx?how+to+set+EnableEventValidation+false+from+userControl+DotNetNuke" target="_blank" rel="noopener noreferrer">http://forums.asp.net/t/1903036.aspx?how+to+set+EnableEventValidation+false+from+userControl+DotNetNuke</a>
 From Link what we understood is that, It is a BUG of AjaxControlToolkit and to resolve  this you've to try following workaround:
-[sourcecode language="csharp"]
+```csharp
 protected void Page_Init(object sender, EventArgs e)&lt;br clear=&quot;none&quot; /&gt;        {        &lt;br clear=&quot;none&quot; /&gt;            Page.EnableEventValidation = false;&lt;br clear=&quot;none&quot; /&gt;        }
-[/sourcecode]
+```
 So, Just use this code where you are facing this challenge. We were seeing it from one of the Sublayout. So, we kept it there and it worked!
 Happy Coding! :-)]]></content:encoded>
 		<excerpt:encoded><![CDATA[]]></excerpt:encoded>
@@ -46582,7 +46582,7 @@ import RPi.GPIO as GPIO ##Import GPIO Library
 GPIO.setmode(GPIO.BOARD) ##Use board pin numbering
 GPIO.setup(13,GPIO.OUT) ## Setup GPIO on Pin13 to out
 GPIO.output(13,True) ##Turn on GPIO pin 13
-[/sourcecode]
+```
 Run it, and your LED should light up!
 &nbsp;
 After that, I wanted to ON/OFF this LED using my mobile! -- And we did that using <a href="http://flask.pocoo.org/" target="_blank" rel="noopener noreferrer">Flask</a> - Flask is a microframework for Python based on Werkzeug, Jinja 2 and good intentions. Basically it is a web server -- Which is easy to set up and run! - Trust me -- Super easy! -- Once we started web server -- Then it was very easy to get it done. And then connected my mobile in same WIFI -- And accessed URL. Using which I can start LED ON/OFF from my phone!

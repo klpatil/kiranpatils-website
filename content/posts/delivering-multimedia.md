@@ -91,10 +91,10 @@ Output of the above piece of code is as below: [It will be real fun when you try
 In above code the main things is :
 
 ```
-[sourcecode language="html"]
+```html
  </span><object id="player1" height="400" width="590" classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6">
  </object>
-<pre> [/sourcecode]
+<pre> ```
 
 ```
 

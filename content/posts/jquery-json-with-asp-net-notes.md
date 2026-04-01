@@ -29,7 +29,7 @@ tags:
   - tips-and-tricks
 title: JQuery, JSON with ASP.NET notes
 url: /2013/07/29/jquery-json-with-asp-net-notes/
-
+draft: true
 ---
 ### Challenge:
 
@@ -40,7 +40,7 @@ Would like to share challenges/tasks with you. So, you can also get benefited by
 
 - Convert Generic List to JSON : Had a generic list, which comes from DB, and needs to pass it on to UI layer, in a JSON format, used System.Web.Script.Serialization.JavaScriptSerializer class for this \[using System.Web.Script.Serialization\]:
 
-\[sourcecode language="csharp"\]
+```csharp
 // ..........
 List<UserUpdate> userUpdates = new List();
 while (sqlDataReader.Read())
@@ -53,7 +53,7 @@ userUpdates.Add(userUpdate);
 JavaScriptSerializer javascriptSerializer = new JavaScriptSerializer();
 string JSONString = javascriptSerializer.Serialize(userUpdates);
 return JSONString;
-\[/sourcecode\]
+```
 Just a note : If you are doing Response.Write then please do change your page's content-type to JSON -- Response.ContentType = "application/json; charset=utf-8";
 
 - After every 2 second update right side data using AJAX and JSON : There will be a sidebar sitting in right side of a page and after every X seconds, it should get updated with latest updates from application:
@@ -62,7 +62,7 @@ To do this, added one UL tag on page, which will hold all data:
 <ul id="user-updates">
 </ul>
 Added JavaScript on page, which checks for update every 2 second and prep ends to UL tag:
-\[sourcecode language="javascript"\]
+```javascript
 <script type="text/javascript">
 var url = "UserUpdates.aspx"; //This page returns JSON
 var userID;
@@ -89,7 +89,7 @@ $("<li><i class='icon-text-width'></i><span>" + field.UpdateMessage + "</span> <
 });
 }, 2000);
 });
-\[/sourcecode\]
+```
 
 - JQUERY Prepending an LI to an UL with Animation -- When any new LI gets added to UL, it should come as an Animation - and invested, lot of time to achieve this requirement and finally, following link worked! \[Thanks!\]
 

@@ -10,7 +10,7 @@ parent_post_id: null
 post_id: "478"
 title: Performing a Long Running Task with ASP.NET
 url: /2010/01/01/performing-a-long-running-task-with-asp-net/
-
+draft: true
 ---
 ### Challenge:
 

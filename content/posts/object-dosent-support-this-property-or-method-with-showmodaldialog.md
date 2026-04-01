@@ -18,12 +18,12 @@ url: /2010/01/11/object-dosent-support-this-property-or-method-with-showmodaldia
 ### Challenge:
 
 We're trying to open Modal Window from Modal Window on button click which is inside update panel:
-\[sourcecode language="csharp"\]
+```csharp
 protected void Button1\_Click(object sender, EventArgs e)
 {
 ScriptManager.RegisterStartupScript(Button1, page.GetType(), "OpenModalDialog", "<script type=text/javascript>window.showModalDialog('http://www.gooogle.com, null, 'dialogHeight:100px;dialogWidth:280px;status:no'); </script>", false);
 }
-\[/sourcecode\]
+```
 But it was giving an error Object dosen't support this property or method
 
 ### Solution:
