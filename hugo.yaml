@@ -38,3 +38,6 @@ outputFormats:
     baseName: feed
 menu:
   main: []
+caches:
+  images:
+    dir: :cacheDir/images
